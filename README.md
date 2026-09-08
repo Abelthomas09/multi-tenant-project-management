@@ -51,6 +51,31 @@ A technical-test project for managing projects across multiple tenants with role
 
 The health endpoint is available at `GET http://localhost:4000/health`.
 
+## Deployment
+
+Configure these environment variables in the backend deployment environment:
+
+```env
+DATABASE_URL="postgresql://user:password@host/database?sslmode=verify-full"
+JWT_SECRET="a-long-random-production-secret"
+JWT_EXPIRES_IN="1h"
+JWT_ISSUER="multi-tenant-project-management"
+JWT_AUDIENCE="multi-tenant-project-management-api"
+CLIENT_URL="https://your-frontend-domain.com"
+NODE_ENV="production"
+LOGIN_RATE_LIMIT_ENABLED="true"
+```
+
+Run the committed migrations before starting the API:
+
+```bash
+cd backend
+npm run prisma:migrate:deploy
+npm start
+```
+
+The API listens on the hosting platform's `PORT` value and can be checked with `GET /health`.
+
 ## Frontend application
 
 The React application is available at the Vite URL (normally `http://localhost:5173`). It provides:

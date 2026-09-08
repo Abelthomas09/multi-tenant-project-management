@@ -1,7 +1,10 @@
 const requiredEnvironmentVariables = ["DATABASE_URL", "JWT_SECRET"];
 
 function validateEnvironment() {
-  const missing = requiredEnvironmentVariables.filter((key) => !process.env[key]);
+  const required = process.env.NODE_ENV === "production"
+    ? [...requiredEnvironmentVariables, "CLIENT_URL"]
+    : requiredEnvironmentVariables;
+  const missing = required.filter((key) => !process.env[key]);
 
   if (missing.length > 0) {
     throw new Error(`Missing required environment variables: ${missing.join(", ")}`);
