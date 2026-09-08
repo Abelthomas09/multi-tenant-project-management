@@ -1,0 +1,31 @@
+.tenant-picker {
+  display: grid;
+  gap: 7px;
+  min-width: 280px;
+}
+
+.tenant-picker form {
+  display: flex;
+  gap: 6px;
+}
+
+.tenant-picker input {
+  min-width: 0;
+  width: 100%;
+}
+
+.tenant-picker button {
+  border: 0;
+  border-radius: 7px;
+  background: #e9efff;
+  color: #3459bc;
+  font-size: 12px;
+  font-weight: 750;
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+
+.tenant-error {
+  color: #9b2238;
+  max-width: 280px;
+}

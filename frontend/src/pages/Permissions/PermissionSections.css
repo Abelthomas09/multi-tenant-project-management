@@ -1,0 +1,32 @@
+.permission-sections {
+  display: grid;
+  gap: 22px;
+  margin-bottom: 20px;
+}
+
+.permission-section-heading {
+  padding: 14px 16px;
+  background: #f5f7fb;
+  border: 1px solid #e0e7f1;
+  border-radius: 9px 9px 0 0;
+}
+
+.permission-section-heading h3 {
+  margin: 0;
+  color: #172033;
+  font-size: 15px;
+}
+
+.permission-section-heading p {
+  margin: 4px 0 0;
+  color: #637087;
+  font-size: 13px;
+}
+
+.permission-section .permission-list {
+  margin: 0;
+  padding: 0 16px;
+  border: 1px solid #e0e7f1;
+  border-top: 0;
+  border-radius: 0 0 9px 9px;
+}
