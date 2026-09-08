@@ -2,7 +2,13 @@ export function Field({ label, value, setValue, type = 'text' }) {
   return (
     <label>
       {label}
-      <input type={type} value={value} onChange={(e) => setValue(e.target.value)} required />
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        autoComplete={type === 'email' ? 'email' : type === 'password' ? 'current-password' : 'on'}
+        required
+      />
     </label>
   )
 }

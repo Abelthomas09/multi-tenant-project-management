@@ -5,8 +5,8 @@ import { errorText } from '../../utils/errors'
 import './Login.css'
 
 export function Login({ onLogin }) {
-  const [email, setEmail] = useState('superadmin@example.com')
-  const [password, setPassword] = useState('Password123!')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 

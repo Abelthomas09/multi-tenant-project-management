@@ -144,13 +144,15 @@ Only a Super Admin with `permissions.manage` can use these endpoints.
 
 An Agent always receives `projects.read` from its role. Direct permissions are intentionally limited to `projects.create`, `projects.update`, and `projects.delete`; requests for any user-management or role-management permission are rejected.
 
-## Development seed credentials
+## Demo Credentials
 
-All development accounts use the password `Password123!`:
+### Super Admin
 
-- `superadmin@example.com`
+- Email: `superadmin@example.com`
+- Password: `Password123!`
+- Role: `SUPER_ADMIN`
 
-These are development-only credentials and must not be used in production.
+These credentials are for demonstration only and must not be used in production.
 
 ## Assumptions
 
