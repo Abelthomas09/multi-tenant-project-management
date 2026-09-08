@@ -1,32 +1,183 @@
+.permission-page {
+  max-width: 900px;
+}
+
+.permission-page .editor {
+  padding: 26px;
+  border-color: #d8e1f0;
+  box-shadow: 0 10px 30px #26334d0d;
+}
+
+.permission-page .editor > div:first-child {
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e8edf5;
+}
+
+.permission-page .editor h2 {
+  font-size: 21px;
+}
+
+.permission-intro {
+  max-width: 690px;
+  margin: 14px 0 28px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
 .permission-sections {
   display: grid;
-  gap: 22px;
-  margin-bottom: 20px;
+  gap: 24px;
+  margin-bottom: 26px;
 }
 
-.permission-section-heading {
-  padding: 14px 16px;
-  background: #f5f7fb;
-  border: 1px solid #e0e7f1;
-  border-radius: 9px 9px 0 0;
+.permission-section-tabs {
+  display: flex;
+  gap: 26px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #e1e8f3;
 }
 
-.permission-section-heading h3 {
-  margin: 0;
-  color: #172033;
-  font-size: 15px;
+.permission-section-tabs button {
+  flex: 0 0 auto;
+  padding: 12px 0 14px;
+  color: #66748b;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 750;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
 }
 
-.permission-section-heading p {
-  margin: 4px 0 0;
-  color: #637087;
-  font-size: 13px;
+.permission-section-tabs button > span {
+  color: #182642;
+}
+
+.permission-section-tabs button:hover {
+  background: transparent;
+  border-color: #a9bff6;
+  box-shadow: none;
+  transform: none;
+}
+
+.permission-section-tabs button.active,
+.permission-section-tabs button.active:hover {
+  background: transparent;
+  border-color: #4777f6;
+  box-shadow: none;
+}
+
+.permission-section-tabs button.active > span {
+  color: #315fd8;
+}
+
+.permission-section {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #dce5f2;
+  border-radius: 11px;
 }
 
 .permission-section .permission-list {
+  display: grid;
   margin: 0;
-  padding: 0 16px;
-  border: 1px solid #e0e7f1;
-  border-top: 0;
-  border-radius: 0 0 9px 9px;
+  padding: 5px 20px;
+  border: 0;
+}
+
+.permission-section .permission-list label {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  padding: 15px 8px;
+}
+
+.permission-section .permission-list label:last-child {
+  border-bottom: 0;
+}
+
+.permission-section .permission-list label:hover {
+  transform: none;
+}
+
+.permission-section .permission-list input[type='checkbox'] {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  cursor: pointer;
+  appearance: none;
+  background: #fff;
+  border: 1.5px solid #b4c4e2;
+  border-radius: 5px;
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.permission-section .permission-list input[type='checkbox']:hover {
+  border-color: #4777f6;
+  box-shadow: 0 0 0 3px #4777f61c;
+}
+
+.permission-section .permission-list input[type='checkbox']:checked {
+  background: #4777f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3.2 8.1 3 3 6.6-6.4' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.2'/%3E%3C/svg%3E") center / 11px 11px no-repeat;
+  border-color: #4777f6;
+}
+
+.permission-section .permission-list input[type='checkbox']:focus-visible {
+  outline: 3px solid #4777f64d;
+  outline-offset: 2px;
+}
+
+.permission-section .permission-list .empty {
+  margin: 16px 0;
+  padding: 20px;
+}
+
+.permission-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid #e5ebf4;
+}
+
+.permission-actions span {
+  color: #71809a;
+  font-size: 12px;
+}
+
+.permission-actions .primary {
+  min-width: 150px;
+  padding: 10px 16px;
+  color: #fff;
+  background: #4777f6;
+  box-shadow: 0 5px 12px #4777f638;
+}
+
+.permission-actions .primary:hover:not(:disabled) {
+  color: #fff;
+  background: #315fd8;
+}
+
+.permission-actions .primary:disabled {
+  color: #fff;
+}
+
+@media (max-width: 760px) {
+  .permission-page .editor { padding: 20px; }
+  .permission-section-tabs { display: grid; gap: 12px; border-bottom: 0; }
+  .permission-section-tabs button { padding: 0 0 10px; }
+  .permission-actions { align-items: stretch; flex-direction: column; }
+  .permission-actions .primary { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .permission-page .editor { padding: 18px; }
+  .permission-intro { font-size: 14px; }
+  .permission-section .permission-list { padding: 4px 12px; }
+  .permission-section .permission-list label { padding: 14px 4px; }
 }

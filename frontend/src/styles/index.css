@@ -1,1 +1,326 @@
 :root { font-family: Inter, ui-sans-serif, system-ui, sans-serif; color:#172033; background:#f5f7fb; font-synthesis:none } * { box-sizing:border-box } body { margin:0; min-width:320px } button,input,select { font:inherit } button { cursor:pointer }
+
+button, input, select, article, .editor, .table, .user-section, .permission-section-heading, .tenant-picker button {
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid #4777f64d;
+  outline-offset: 2px;
+}
+
+button:disabled { cursor: not-allowed; opacity: .6; }
+input:hover, select:hover { border-color: #9db4eb; }
+.primary:hover:not(:disabled) { box-shadow: 0 6px 14px #4777f640; transform: translateY(-1px); }
+.editor .primary {
+  padding: 10px 16px !important;
+  color: #fff !important;
+  font-weight: 750 !important;
+  text-decoration: none !important;
+  background: #3d6df0 !important;
+  border: 0 !important;
+  border-radius: 7px !important;
+  box-shadow: 0 5px 12px #4777f638;
+}
+.editor .primary:hover:not(:disabled) {
+  color: #fff !important;
+  text-decoration: none !important;
+  background: #2859d6 !important;
+  box-shadow: 0 7px 16px #4777f64d;
+}
+.tenant-picker button:hover:not(:disabled) { background: #dbe6ff; color: #244aa8; transform: translateY(-1px); }
+.grid article:hover { border-color: #c6d4f0; box-shadow: 0 9px 24px #26334d17; transform: translateY(-2px); }
+.editor:hover, .table:hover, .user-section:hover { border-color: #cbd7ec; box-shadow: 0 6px 18px #26334d12; }
+.table tbody tr { transition: background-color 150ms ease; }
+.table tbody tr:hover { background: #f7f9fe; }
+.table button:hover, article button:hover, .editor > button:hover { color: #285be0; text-decoration: underline; text-underline-offset: 3px; }
+.permission-list label { border-radius: 6px; transition: background-color 150ms ease, transform 150ms ease; }
+.permission-list label:hover { background: #f5f8ff; }
+.permission-section-heading:hover { background: #f0f4fc; border-color: #ccd9ef; }
+
+.profile {
+  gap: 12px !important;
+  padding-top: 20px !important;
+}
+
+.profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.profile-identity > div {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.profile-avatar {
+  display: grid;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: #dfe8ff;
+  font-size: 12px;
+  font-weight: 850;
+  background: #293d67;
+  border: 1px solid #405680;
+  border-radius: 50%;
+}
+
+.profile b { color: #fff; font-size: 13px; }
+.profile small { color: #9eafd0; }
+.profile em { margin-left: 44px; }
+
+.profile .profile-signout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 8px 10px;
+  color: #bcd0ff;
+  font-size: 12px;
+  text-align: center;
+  background: #1a2946;
+  border: 1px solid #344b75;
+  border-radius: 7px;
+}
+
+.profile .profile-signout:hover {
+  color: #fff;
+  background: #293d67;
+  border-color: #5271aa;
+}
+
+.signout-icon {
+  display: inline-grid;
+  width: 17px;
+  height: 17px;
+  place-items: center;
+}
+
+.signout-icon svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.nav-icon {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  place-items: center;
+  vertical-align: middle;
+}
+
+.nav-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.sidebar-toggle {
+  display: none;
+}
+
+@media (min-width: 761px) {
+  .shell {
+    grid-template-columns: 1fr !important;
+  }
+
+  .shell > aside {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 245px;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .shell > main {
+    grid-column: 1;
+    width: calc(100% - 245px) !important;
+    margin-left: 245px;
+  }
+
+  .sidebar-toggle {
+    position: absolute;
+    top: 19px;
+    right: 12px;
+    display: grid;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    place-items: center;
+    color: #bcd0ff;
+    font-size: 22px;
+    line-height: 1;
+    background: #1a2946;
+    border: 1px solid #344b75;
+    border-radius: 7px;
+  }
+
+  .sidebar-toggle:hover { color: #fff; background: #293d67; }
+
+  .shell.sidebar-collapsed > aside {
+    width: 76px;
+    padding: 22px 10px;
+    overflow: visible;
+  }
+
+  .shell.sidebar-collapsed > main {
+    width: calc(100% - 76px) !important;
+    margin-left: 76px;
+  }
+
+  .shell.sidebar-collapsed .sidebar-toggle {
+    top: 26px;
+    right: 6px;
+  }
+
+  .sidebar-collapsed .brand {
+    position: relative;
+    display: grid;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    place-items: center;
+    color: #fff;
+    font-size: 12px;
+    background: #293d67;
+    border: 1px solid #405680;
+    border-radius: 10px;
+  }
+
+  .sidebar-collapsed .brand::after {
+    position: absolute;
+    top: 39px;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    content: '';
+    background: #344464;
+  }
+
+  .sidebar-collapsed .brand span,
+  .sidebar-collapsed .nav-label,
+  .sidebar-collapsed .profile-identity > div,
+  .sidebar-collapsed .profile em,
+  .sidebar-collapsed .profile-signout {
+    display: none;
+  }
+
+  .shell.sidebar-collapsed nav a {
+    display: grid;
+    min-height: 40px;
+    place-items: center;
+  }
+
+  .shell.sidebar-collapsed .nav-icon {
+    display: inline-grid;
+    margin-right: 0;
+  }
+  .sidebar-collapsed .profile {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .sidebar-collapsed .profile-identity { justify-content: center; }
+
+  .sidebar-collapsed .profile-avatar {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .sidebar-collapsed .profile-signout {
+    position: relative;
+    display: grid;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    place-items: center;
+    font-size: 0;
+  }
+
+  .sidebar-collapsed .profile-signout::after {
+    position: absolute;
+    left: calc(100% + 8px);
+    padding: 6px 8px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    pointer-events: none;
+    content: 'Sign out';
+    background: #17233d;
+    border: 1px solid #405680;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px #101a3040;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+
+  .sidebar-collapsed .profile-signout:hover::after,
+  .sidebar-collapsed .profile-signout:focus-visible::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-icon { display: none; }
+
+  .shell > aside {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto;
+    overflow: visible !important;
+    flex-wrap: wrap;
+  }
+
+  .shell > main {
+    grid-column: auto;
+    width: 100% !important;
+    margin-left: 0;
+    padding: 26px 18px !important;
+  }
+
+  .brand { font-size: 17px; }
+  .shell nav { flex: 1; min-width: 0; overflow-x: auto; }
+  .shell nav a, .shell nav button { flex: 0 0 auto; white-space: nowrap; }
+  .toolbar { flex-wrap: wrap; gap: 12px; }
+  .toolbar select { flex: 1 1 180px; }
+  .tenant-picker { width: 100%; min-width: 0; }
+  .tenant-picker form { width: 100%; }
+  .tenant-picker form input { min-width: 0; }
+  .table table { min-width: 560px; }
+  .user-section-heading { padding: 15px 16px; }
+}
+
+@media (max-width: 480px) {
+  .shell > aside { padding: 14px 12px !important; }
+  .shell > main { padding: 22px 14px !important; }
+  h1 { font-size: 28px; }
+  header p { font-size: 10px; }
+  .toolbar .primary { width: 100%; }
+  .editor { padding: 16px; }
+  .editor > div:first-child { align-items: flex-start; }
+  .table table { min-width: 520px; }
+  .user-section-heading { font-size: 16px; }
+}

@@ -10,6 +10,7 @@ export function PermissionManagement({ api }) {
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [activeSection, setActiveSection] = useState('projects.')
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -37,6 +38,13 @@ export function PermissionManagement({ api }) {
       return next
     })
 
+  const permissionLabel = (code) => {
+    const [resource, action] = code.split('.')
+    const actions = { create: 'Create', delete: 'Delete', read: 'View', update: 'Edit', disable: 'Disable', manage: 'Manage' }
+    const resources = { projects: 'Project', users: 'User', permissions: 'Permissions' }
+    return `${actions[action] || action} ${resources[resource] || resource}`
+  }
+
   const permissionSections = [
     {
       title: 'Project Management',
@@ -58,7 +66,9 @@ export function PermissionManagement({ api }) {
       ...section,
       permissions: permissions.filter((permission) => permission.code.startsWith(section.prefix)),
     }))
-    .filter((section) => section.permissions.length)
+
+  const selectedSection =
+    permissionSections.find((section) => section.prefix === activeSection) || permissionSections[0]
 
   const save = async () => {
     setSaving(true)
@@ -95,14 +105,23 @@ export function PermissionManagement({ api }) {
             protected routes.
           </p>
           <div className="permission-sections">
-            {permissionSections.map((section) => (
-              <div className="permission-section" key={section.title}>
-                <div className="permission-section-heading">
-                  <h3>{section.title}</h3>
-                  <p>{section.description}</p>
-                </div>
+            <div className="permission-section-tabs" role="tablist" aria-label="Permission categories">
+              {permissionSections.map((section) => (
+                <button
+                  className={section.prefix === selectedSection?.prefix ? 'active' : ''}
+                  key={section.title}
+                  onClick={() => setActiveSection(section.prefix)}
+                  role="tab"
+                  aria-selected={section.prefix === selectedSection?.prefix}
+                >
+                  <span>{section.title}</span>
+                </button>
+              ))}
+            </div>
+            {selectedSection && (
+              <div className="permission-section">
                 <div className="permission-list">
-                  {section.permissions.map((permission) => (
+                  {selectedSection.permissions.map((permission) => (
                     <label key={permission.code}>
                       <input
                         type="checkbox"
@@ -110,18 +129,22 @@ export function PermissionManagement({ api }) {
                         onChange={() => toggle(permission.code)}
                       />
                       <span>
-                        <b>{permission.code}</b>
+                        <b>{permissionLabel(permission.code)}</b>
                         <small>{permission.description}</small>
                       </span>
                     </label>
                   ))}
+                  {!selectedSection.permissions.length && <Empty>No permissions in this category.</Empty>}
                 </div>
               </div>
-            ))}
+            )}
           </div>
-          <button className="primary" onClick={save} disabled={saving}>
+          <div className="permission-actions">
+            <span>Changes apply to all Admins in this tenant.</span>
+            <button className="primary" onClick={save} disabled={saving}>
             {saving ? 'Saving…' : 'Save permissions'}
-          </button>
+            </button>
+          </div>
         </div>
       )}
     </section>

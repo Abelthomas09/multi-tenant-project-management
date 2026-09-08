@@ -1,0 +1,39 @@
+.user-sections {
+  display: grid;
+  gap: 14px;
+}
+
+.user-section {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #dfe5ee;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #26334d0a;
+}
+
+.user-section-heading {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  padding: 17px 20px;
+  color: #172033;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  background: #fff;
+  border: 0;
+}
+
+.user-section-heading:hover { background: #f7f9fd; }
+.user-section-heading small { padding: 3px 8px; color: #526dba; font-size: 12px; background: #e9efff; border-radius: 20px; }
+.user-section-chevron { margin-left: auto; color: #4777f6; font-size: 21px; line-height: 1; }
+.user-section-table { border: 0; border-top: 1px solid #edf0f5; border-radius: 0; box-shadow: none; }
+.user-section-table .empty { margin: 18px; }
+.user-section-table table { table-layout: fixed; }
+.user-name-column { width: 34%; }
+.user-role-column { width: 20%; }
+.user-status-column { width: 17%; }
+.user-actions-column { width: 29%; }
