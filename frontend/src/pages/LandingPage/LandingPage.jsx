@@ -1,10 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './LandingPage.css'
+
+const heroSlides = [
+  '/landing%20image1.jpg',
+  '/landing%20image2.jpg',
+  '/landing%20image3.jpg',
+]
 
 export function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('projects')
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+
+    const slideTimer = window.setInterval(() => {
+      setActiveHeroSlide((current) => (current + 1) % heroSlides.length)
+    }, 6500)
+
+    return () => window.clearInterval(slideTimer)
+  }, [])
 
   const handleNavClick = (id) => {
     setMobileMenuOpen(false)
@@ -64,9 +81,9 @@ export function LandingPage() {
 
       {/* Hero Section */}
       <section className="hero-section">
-        <div className="hero-bg-shapes">
-          <div className="shape-blob blob-1"></div>
-          <div className="shape-blob blob-2"></div>
+        <div className="hero-background" aria-hidden="true">
+          <img key={heroSlides[activeHeroSlide]} src={heroSlides[activeHeroSlide]} alt="" />
+          <div className="hero-background-overlay"></div>
         </div>
         
         <div className="landing-container hero-content">
@@ -117,6 +134,19 @@ export function LandingPage() {
               <span className="stat-label">Multi-Company Switching</span>
             </div>
           </div>
+        </div>
+
+        <div className="hero-slide-controls" role="group" aria-label="Choose hero background image">
+          {heroSlides.map((slide, index) => (
+            <button
+              key={slide}
+              type="button"
+              className={`hero-slide-dot ${activeHeroSlide === index ? 'active' : ''}`}
+              onClick={() => setActiveHeroSlide(index)}
+              aria-label={`Show background image ${index + 1}`}
+              aria-pressed={activeHeroSlide === index}
+            />
+          ))}
         </div>
       </section>
 

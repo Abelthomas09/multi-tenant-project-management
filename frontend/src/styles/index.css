@@ -178,14 +178,14 @@ input:hover, select:hover { border-color: #9db4eb; }
   .sidebar-toggle:hover { color: #fff; background: #293d67; }
 
   .shell.sidebar-collapsed > aside {
-    width: 76px;
+    width: 88px;
     padding: 22px 10px;
     overflow: visible;
   }
 
   .shell.sidebar-collapsed > main {
-    width: calc(100% - 76px) !important;
-    margin-left: 76px;
+    width: calc(100% - 88px) !important;
+    margin-left: 88px;
   }
 
   .shell.sidebar-collapsed .sidebar-toggle {
@@ -210,7 +210,7 @@ input:hover, select:hover { border-color: #9db4eb; }
   .sidebar-collapsed .brand::after {
     position: absolute;
     top: 39px;
-    left: 0;
+    left: 4px;
     width: 60px;
     height: 1px;
     content: '';
