@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Alert, Field } from '../../components/common/UI'
 import { loginRequest } from '../../services/api'
 import { errorText } from '../../utils/errors'
@@ -27,10 +28,13 @@ export function Login({ onLogin }) {
   return (
     <main className="login">
       <form onSubmit={submit}>
-        <div className="mark">PM</div>
+        <div className="login-top-bar">
+          <Link to="/" className="back-home-link">← Back to Home</Link>
+        </div>
+        <div className="mark">WS</div>
         <div className="login-heading">
           <p>Welcome back</p>
-          <h1>Sign in to your workspace</h1>
+          <h1>Sign in to WorkSphere</h1>
           <span>Access your projects, teams, and permissions in one place.</span>
         </div>
         {error && <Alert>{error}</Alert>}

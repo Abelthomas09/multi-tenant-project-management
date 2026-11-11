@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { MainLayout } from '../layouts/MainLayout'
+import { LandingPage } from '../pages/LandingPage/LandingPage'
 import { Login } from '../pages/Login/Login'
 import { PermissionManagement } from '../pages/Permissions/PermissionManagement'
 import { Projects } from '../pages/Projects/Projects'
@@ -14,8 +15,9 @@ export function AppRoutes() {
   if (!session) {
     return (
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login onLogin={login} />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     )
   }
@@ -25,6 +27,7 @@ export function AppRoutes() {
 
   return (
     <Routes>
+      <Route path="/" element={<Navigate to={defaultPath} replace />} />
       <Route path="/login" element={<Navigate to={defaultPath} replace />} />
 
       {can('projects.read') && (

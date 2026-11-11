@@ -13,7 +13,7 @@ export function MainLayout({ currentPage, canManagePermissions, children }) {
     <div className={`shell ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
       <aside>
         <div className="brand">
-          PM <span>Workspace</span>
+          Work<span>Sphere</span>
         </div>
         <button
           className="sidebar-toggle"
@@ -73,7 +73,7 @@ export function MainLayout({ currentPage, canManagePermissions, children }) {
       <main>
         <header>
           <div>
-            <p>Multi-tenant project management</p>
+            <p>WorkSphere — Multi-tenant project management</p>
             <h1>{title}</h1>
           </div>
           {session.user.role === 'SUPER_ADMIN' && currentPage !== 'permissions' && (

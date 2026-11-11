@@ -132,6 +132,22 @@
   transform: translateY(-1px);
 }
 
+.login-top-bar {
+  margin-bottom: 20px;
+}
+
+.back-home-link {
+  color: #64718a;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.back-home-link:hover {
+  color: #4777f6;
+}
+
 .login-note {
   display: block;
   margin-top: 20px;
