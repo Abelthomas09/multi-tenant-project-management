@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import './LandingPage.css'
 
 const heroSlides = [
-  '/landing%20image1.jpg',
-  '/landing%20image2.jpg',
-  '/landing%20image3.jpg',
+  '/hero-slide-1.jpg',
+  '/hero-slide-2.jpg',
+  '/hero-slide-3.jpg',
 ]
 
 export function LandingPage() {
@@ -21,6 +21,13 @@ export function LandingPage() {
     }, 6500)
 
     return () => window.clearInterval(slideTimer)
+  }, [])
+
+  useEffect(() => {
+    heroSlides.slice(1).forEach((src) => {
+      const image = new Image()
+      image.src = src
+    })
   }, [])
 
   const handleNavClick = (id) => {
@@ -82,7 +89,13 @@ export function LandingPage() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-background" aria-hidden="true">
-          <img key={heroSlides[activeHeroSlide]} src={heroSlides[activeHeroSlide]} alt="" />
+          <img
+            key={heroSlides[activeHeroSlide]}
+            src={heroSlides[activeHeroSlide]}
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+          />
           <div className="hero-background-overlay"></div>
         </div>
         
